@@ -50,6 +50,36 @@ function getPlayerChoice(){
         getPlayerChoice();}
 }
 
-let playerTurn = getPlayerChoice();
-let computerTurn = getComputerChoice();
-playRound(playerTurn,computerTurn);
+function game(){
+    let i = 0;
+    let rounds = {playerWins: 0, computerWins: 0, draws: 0};
+    while (i<5){
+        let playerTurn = getPlayerChoice();
+        let computerTurn = getComputerChoice();
+        let result = playRound(playerTurn,computerTurn);
+        switch (result){
+            case 0:
+                rounds.draws++;
+                break;
+            case 1:
+                rounds.playerWins++;
+                break;
+            case 2:
+                rounds.computerWins++;
+                break;
+        }
+        console.log("Player won "+rounds.playerWins+" times.");
+        console.log("Computer won "+rounds.computerWins+" times.");
+        console.log("Draw games: "+rounds.draws);
+        i++;
+    }
+    if(rounds.playerWins>rounds.computerWins){
+        console.log("Player victory!");
+    } else if(rounds.playerWins<rounds.computerWins){
+        console.log("Computer victory!");
+    } else {
+        console.log("Overall draw!");
+    }
+}
+
+console.log("Input game() to start playing...");
