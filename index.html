@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
     <title>Rock Paper Scissors</title>
 </head>
 <body>
@@ -25,6 +24,12 @@
             <button id="scissors-button"><i>Scissors</i></button>
         </div>
     </div>
+    <div id="moves-done">
+        <ul>
+            <li id="player-move">Player used: <span id="player-pressed">-</span></li>
+            <li id="computer-move">Computer used: <span id="computer-pressed">-</span></span></li>
+        </ul>
+    </div>
     <div id="scores-container">
         <div class="score-box">
             <h2>Player score</h2>
@@ -38,5 +43,6 @@
     <footer>
         <h3>Made by Enzo Otalora</h3>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

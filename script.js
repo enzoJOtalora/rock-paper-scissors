@@ -2,6 +2,16 @@ const reRock=/rock/gi;
 const rePaper=/paper/gi;
 const reScissors=/scissors/gi;
 
+const btn1 = document.querySelector('#rock-button');
+const btn2 = document.querySelector('#paper-button');
+const btn3 = document.querySelector('#scissors-button');
+
+btn1.addEventListener('click', playRound("Rock"));
+
+btn2.addEventListener('click', playRound("Paper"));
+
+btn3.addEventListener('click', playRound("Scissors"));
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -18,7 +28,8 @@ function getComputerChoice(){
     }
 }
 
-function playRound(playerChoice,computerChoice){
+function playRound(playerChoice){
+    let computerChoice = getComputerChoice();
     console.log("Player chose: "+playerChoice);
     console.log("Computer chose: "+computerChoice);
     if (playerChoice===computerChoice){
@@ -36,7 +47,7 @@ function playRound(playerChoice,computerChoice){
         }
 }
 
-function getPlayerChoice(){
+function getPlayerChoice(e){
     let playerInput = prompt("Rock, Paper, Scissors!");
 
     if(reRock.test(playerInput)){
