@@ -3,6 +3,7 @@ const btn2 = document.getElementById('paper-button');
 const btn3 = document.getElementById('scissors-button');
 const pScore = document.getElementById('player-score');
 const cScore = document.getElementById('computer-score');
+const header = document.getElementById('header-text');
 
 btn1.addEventListener('click', () => handleClick('Rock'));
 
@@ -33,11 +34,13 @@ function handleClick(playerChoice){
     if (result==1){
         rounds.playerWins++;
         pScore.textContent=parseInt(rounds.playerWins);
+        header.textContent="Player wins!"
     } else if(result==2){
         rounds.computerWins++;
         cScore.textContent=parseInt(rounds.computerWins);
+        header.textContent="Computer wins!";
     } else {
-        console.log('draw handle');
+        header.textContent="It's a draw!";
     }
 }
 
@@ -46,25 +49,29 @@ function playRound(playerChoice){
     console.log("Player chose: "+playerChoice);
     console.log("Computer chose: "+computerChoice);
     if (playerChoice===computerChoice){
-        console.log("It's a draw!")
         return 0;
     }
     if ((playerChoice==="Rock"&&computerChoice==="Scissors")||
         (playerChoice==="Paper"&&computerChoice==="Rock")||
         (playerChoice==="Scissors"&&computerChoice==="Paper")){
-            console.log("Player wins!")
             return 1;
         } else {
-            console.log("Computer wins!")
             return 2;
         }
 }
 
 function isOver(rounds){
-    if(rounds.playerWins===5||rounds.computerWins){
+    if(rounds.playerWins===5||rounds.computerWins===5){
         return true;
     } else {
         return false;
+    }
+}
+
+function gameReset(gameEnd){
+    if(gameEnd){
+        rounds.computerWins=0;
+        rounds.playerWins=0;
     }
 }
 
