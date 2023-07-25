@@ -4,6 +4,8 @@ const btn3 = document.getElementById('scissors-button');
 const pScore = document.getElementById('player-score');
 const cScore = document.getElementById('computer-score');
 const header = document.getElementById('header-text');
+const playerPress = document.getElementById('player-pressed');
+const computerPress = document.getElementById('computer-pressed');
 
 btn1.addEventListener('click', () => handleClick('Rock'));
 
@@ -30,23 +32,26 @@ function getComputerChoice(){
 }
 
 function handleClick(playerChoice){
+    
     let result = playRound(playerChoice);
     if (result==1){
         rounds.playerWins++;
         pScore.textContent=parseInt(rounds.playerWins);
-        header.textContent="Player wins!"
+        header.textContent="Player wins the round!"
     } else if(result==2){
         rounds.computerWins++;
         cScore.textContent=parseInt(rounds.computerWins);
-        header.textContent="Computer wins!";
+        header.textContent="Computer wins the round!";
     } else {
         header.textContent="It's a draw!";
     }
+    gameReset();
 }
 
 function playRound(playerChoice){
     let computerChoice = getComputerChoice();
-    console.log("Player chose: "+playerChoice);
+    playerPress.textContent=playerChoice;
+    computerPress.textContent=computerChoice;
     console.log("Computer chose: "+computerChoice);
     if (playerChoice===computerChoice){
         return 0;
@@ -68,10 +73,17 @@ function isOver(rounds){
     }
 }
 
-function gameReset(gameEnd){
-    if(gameEnd){
+function gameReset(){
+    if(isOver(rounds)){
+        if(rounds.playerWins==5){
+            header.textContent="Game winner: Player!";
+        } else if(rounds.computerWins==5){
+            header.textContent="Game winnner: Computer!";
+        }
         rounds.computerWins=0;
         rounds.playerWins=0;
+        pScore.textContent=parseInt(rounds.playerWins);
+        cScore.textContent=parseInt(rounds.computerWins);
     }
 }
 
