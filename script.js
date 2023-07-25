@@ -50,7 +50,7 @@ function getPlayerChoice(){
         getPlayerChoice();}
 }
 
-function game(){
+/*function game(){
     let i = 0;
     let rounds = {playerWins: 0, computerWins: 0, draws: 0};
     while (i<5){
@@ -82,4 +82,4 @@ function game(){
     }
 }
 
-console.log("Input game() to start playing...");
+console.log("Input game() to start playing...");*/
