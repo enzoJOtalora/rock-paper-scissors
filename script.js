@@ -1,16 +1,16 @@
-const reRock=/rock/gi;
-const rePaper=/paper/gi;
-const reScissors=/scissors/gi;
+const btn1 = document.getElementById('rock-button');
+const btn2 = document.getElementById('paper-button');
+const btn3 = document.getElementById('scissors-button');
+const pScore = document.getElementById('player-score');
+const cScore = document.getElementById('computer-score');
 
-const btn1 = document.querySelector('#rock-button');
-const btn2 = document.querySelector('#paper-button');
-const btn3 = document.querySelector('#scissors-button');
+btn1.addEventListener('click', () => handleClick('Rock'));
 
-btn1.addEventListener('click', playRound("Rock"));
+btn2.addEventListener('click', () => handleClick('Paper'));
 
-btn2.addEventListener('click', playRound("Paper"));
+btn3.addEventListener('click', () => handleClick('Scissors'));
 
-btn3.addEventListener('click', playRound("Scissors"));
+let rounds = {playerWins:0, computerWins:0}
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -25,6 +25,19 @@ function getComputerChoice(){
             return "Paper";
         case 3:
             return "Scissors";
+    }
+}
+
+function handleClick(playerChoice){
+    let result = playRound(playerChoice);
+    if (result==1){
+        rounds.playerWins++;
+        pScore.textContent=parseInt(rounds.playerWins);
+    } else if(result==2){
+        rounds.computerWins++;
+        cScore.textContent=parseInt(rounds.computerWins);
+    } else {
+        console.log('draw handle');
     }
 }
 
@@ -47,7 +60,15 @@ function playRound(playerChoice){
         }
 }
 
-function getPlayerChoice(e){
+function isOver(rounds){
+    if(rounds.playerWins===5||rounds.computerWins){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/*function getPlayerChoice(){
     let playerInput = prompt("Rock, Paper, Scissors!");
 
     if(reRock.test(playerInput)){
